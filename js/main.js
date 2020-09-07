@@ -1,10 +1,21 @@
 const URL = 'https://randomuser.me/api/?results=18';
-
 let users = [];
 
+const button = document.querySelector('#btn');
+const container = document.querySelector('#container');
+
+const GENERATOR_BUTTON_TEXT = `
+<i class="fas fa-sync-alt"></i>
+  Generar nuevos`
+;
+
+const BACK_BUTTON_TEXT = `
+<i class="fas fa-arrow-left"></i>
+  Regresar`
+;
+
 const drawContainer = () => {
-  const container = document.querySelector('#container');
-  document.querySelector('#btn').innerHTML = 'Generar nuevos';
+  button.innerHTML = GENERATOR_BUTTON_TEXT;
   container.innerHTML = '';
 
   fetch(URL)
@@ -44,8 +55,8 @@ const drawContainer = () => {
 document.addEventListener('DOMContentLoaded', (event) => drawContainer());
 
 const userDetail = (event) => {
-  document.querySelector('#container').style.display = 'none';
-  document.querySelector('#btn').innerHTML = 'Regresar';
+  container.style.display = 'none';
+  button.innerHTML = BACK_BUTTON_TEXT;
   const uuid = event.target.getAttribute('uuid');
   const user = getUser(uuid);
   const detailContainer = document.querySelector('#detail');
@@ -71,9 +82,11 @@ const getUser = (uuid) => {
   return users[index];
 };
 
-document.querySelector('#btn').addEventListener('click', () => {
-  document.querySelector('#container').style.display = 'grid';
-  document.querySelector('#detail').classList.toggle('frame');
+button.addEventListener('click', () => {
+  if (button.innerText === 'REGRESAR') {
+    document.querySelector('#detail').innerHTML = '';
+  }
+  container.style.display = 'grid';
   users = [];
   drawContainer();
 });

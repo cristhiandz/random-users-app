@@ -112,6 +112,10 @@ button {
   outline: none;
 }
 
+.button i{
+  margin-right: 5px;
+}
+
 .button {
   background-position: center;
   transition: background 0.8s;
