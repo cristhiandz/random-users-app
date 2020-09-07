@@ -6,13 +6,13 @@ const container = document.querySelector('#container');
 
 const GENERATOR_BUTTON_TEXT = `
 <i class="fas fa-sync-alt"></i>
-  Generar nuevos`
-;
+  Generar nuevos
+`;
 
 const BACK_BUTTON_TEXT = `
 <i class="fas fa-arrow-left"></i>
-  Regresar`
-;
+  Regresar
+`;
 
 const drawContainer = () => {
   button.innerHTML = GENERATOR_BUTTON_TEXT;
@@ -42,8 +42,8 @@ const drawContainer = () => {
           </a>
         `;
 
+        div.addEventListener('click', userDetail);
         container.appendChild(div);
-        container.addEventListener('click', userDetail);
       });
     })
     .catch((err) => {
@@ -83,9 +83,7 @@ const getUser = (uuid) => {
 };
 
 button.addEventListener('click', () => {
-  if (button.innerText === 'REGRESAR') {
-    document.querySelector('#detail').innerHTML = '';
-  }
+  document.querySelector('#detail').innerHTML = '';
   container.style.display = 'grid';
   users = [];
   drawContainer();
